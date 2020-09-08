@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>数据爬取</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}" href="">
+    <script th:src="@{static/js/jquery-3.5.1.min.js}" src=""></script>
+    <script th:src="@{static/js/bootstrap.min.js}" src=""></script>
+    <script type="text/javascript" src="" th:src="@{/static/js/change.js}"></script>
+</head>
+<body>
+
+<div th:include="~{bar :: topbar}"></div>
+
+<div class="container-fluid">
+
+    <div class="panel panel-default">
+        <form th:action="@{/grab_data}" method="post">
+            <div class="form-group form-inline col-sm-7 col-sm-offset-5">
+                <label for="fid">选择分类</label>
+                <div>
+
+                    <select name="fid" id="fid" class="form-control" style="width: 150px">
+                        <option value="2">国产资源</option>
+                        <option value="42">无码破解</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group form-inline  col-sm-7 col-sm-offset-5">
+
+                <label class="">爬取范围</label>
+                <div>
+                    <input type="text" name="start" id="start" placeholder="start" class="form-control"
+                           style="width: 70px">
+
+                    <input type="text" name="stop" id="stop" placeholder="stop" class="form-control"
+                           style="width: 70px">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1 col-xs-4 col-sm-offset-5">
+                    <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block ">爬取</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!--complete messge-->
+    <span th:if="${msg!=null}">
+            <p class="text-center text-danger h3" th:text="${msg}"></p>
+        </span>
+    <!-- progress bar-->
+    <span th:if="${items==null&&pics==null}">
+            <div class="progress">
+                          <div class="progress-bar progress-bar-striped active" style="width: 0%"></div>
+            </div>
+        </span>
+    <span th:if="${items!=null&&pics!=null}">
+
+            <div class="progress">
+                          <div class="progress-bar progress-bar-striped active" style="width: 100%"></div>
+            </div>
+            <p class="text-center text-danger h3" th:text="'本次一共抓取'+${items}+'条帖子,'+${pics}+'张图片'"></p>
+        </span>
+
+    <span class="row">
+        <div class="pull-right ">
+            <label>切换视图</label>
+            <button id="f2" class="btn btn-warning">国产资源</button>
+            <button id="f42" class="btn btn-info">无码破解</button>
+        </div>
+    </span>
+
+    <div class="embed-responsive embed-responsive-4by3 ">
+        <iframe class="embed-responsive-item"
+                src="http://a1b2c3d4.6699a.xyz:16982/forum.php?mod=forumdisplay&fid=2"></iframe>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.xwz"/>
+    <context:property-placeholder location="classpath:jdbc.properties" file-encoding="UTF-8"/>
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxWaitMillis" value="${jdbc.maxWait}"/>
+        <property name="driverClassName" value="${jdbc.drivername}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="defaultAutoCommit" value="true"/>
+    </bean>
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:myabtis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:myabtis/mappers/*.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.xwz.mapper"/>
+    </bean>
+    <!--HttpClient连接池-->
+    <bean id="clientConnectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <property name="maxTotal" value="10"/>
+    </bean>
+    <bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder">
+        <property name="connectionManager" ref="clientConnectionManager"/>
+    </bean>
+    <bean factory-bean="httpClientBuilder" factory-method="build"/>
+    <bean class="com.xwz.utils.RequestFacotry"/>
+</beans>

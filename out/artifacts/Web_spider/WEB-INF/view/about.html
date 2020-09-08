@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>关于</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}" href="">
+    <script th:src="@{static/js/jquery-3.5.1.min.js}" src=""></script>
+    <script th:src="@{static/js/bootstrap.min.js}" src=""></script>
+    <script th:src="@{/static/js/style.js}" src=""></script>
+</head>
+<body>
+<div th:include="~{bar :: topbar}"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <h3 class="text-center">声明</h3>
+            <span class="text-left text-justify">
+            此项目纯粹由本人闲暇之余凭兴趣编写,其中的爬取和解析算法只对于程序中单一网站生效,大家可根据其他网站进行定制爬取和解析算法,
+            此程序仅供学习交流,请于下载后24小时内删除.技术无罪,请遵守所在国家及法律使用,所产生的后果本人一律不承担任何法律责任.
+            希望在此项目上进行修改时请进行注明来源. <br>
+            <label>邮箱<span class="glyphicon glyphicon-envelope"></span>&nbsp;:</label>xwz4417@163.com <br>
+           <label>QQ：</label> 3067095141 <br>
+            <label>微信：</label>xwziyq <br>
+            欢迎大家学习交流,平时也可以有偿接一些java项目,赚点零食钱,嗝~
+        </span>
+            <h3 class="text-center">技术描述</h3>
+            <span class="text-left text-justify">
+            本程序采用SSM(<ins>SpringMvc</ins>,<ins>SpringFramework</ins>,<ins>Mybatis</ins>)框架, <ins>Log4j</ins>日志框架,<ins>Mysql <small>(8.0.19)</small> </ins>数据库
+            作数据存储. <ins>Maven</ins>进行依赖管理, <ins>Apache HttpClient</ins>进行数据爬取,<ins>Jsoup</ins>对爬取到的数据解析处理.前端采用 <ins>Thymeleaf</ins>进行页面解析,
+            <ins>BootStrap</ins>进行页面渲染. 建议使用IDEA导入项目<br><br>
+            鸣谢 <a href="http://glyphicons.com/">Glyphicon Halflings</a>,
+            项目中的字体图标均来源于此.
+        </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xwz.mapper.LocalDataMapper">
+    <delete id="Del_Pic">
+        DELETE
+        FROM pic
+        WHERE id = #{id}
+    </delete>
+
+    <select id="SelectDataByAll" parameterType="com.xwz.bean.PageUtils" resultType="com.xwz.bean.Pic">
+        SELECT * FROM pic
+        <if test="key!=null">
+            <where>
+                title like(#{key})
+            </where>
+        </if>
+        limit #{dataBefore},#{pageSize}
+    </select>
+
+    <select id="SelectCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM pic
+        <if test="key!=null">
+            <where>
+                title like(#{key})
+            </where>
+        </if>
+    </select>
+</mapper>
